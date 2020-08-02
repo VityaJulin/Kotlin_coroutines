@@ -5,10 +5,10 @@ import org.joda.time.LocalDate
 class PostCard(
     val username: String,
     val date: LocalDate,
-    var post: String,
-    var liked: Boolean = false,
-    var commented: Boolean = false,
-    var shared: Boolean = false
+    val post: String,
+    val liked: Boolean = false,
+    val commented: Boolean = false,
+    val shared: Boolean = false
 ) {
 
 }
