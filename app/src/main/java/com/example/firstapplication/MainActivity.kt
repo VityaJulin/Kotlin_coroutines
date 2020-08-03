@@ -1,5 +1,7 @@
 package com.example.firstapplication
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -52,7 +54,20 @@ class MainActivity : AppCompatActivity() {
                 share_counts_txt.visibility = View.INVISIBLE
             }
         }
+
+        location_btn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                if (post.coordinate != null) {
+                    post.coordinate!!
+                } else
+                    Uri.parse(post.address)
+            }
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            }
+        }
     }
+
 
     private val post = PostCard("Username", LocalDate(), "first post in our network", true)
 
@@ -78,11 +93,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getTimePeriod(post: PostCard): String{
+    private fun getTimePeriod(post: PostCard): String {
         val currentDate = LocalDate()
-        val postDate= post.date
+        val postDate = post.date
         val period = Period(postDate, currentDate)
 
-        return "hour " + period.hours + " minutes " + period.minutes +  " ago"
+        return "hour " + period.hours + " minutes " + period.minutes + " ago"
     }
 }
