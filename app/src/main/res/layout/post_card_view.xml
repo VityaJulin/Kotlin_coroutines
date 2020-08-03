@@ -64,11 +64,11 @@
 
     <TextView
         android:id="@+id/like_counts_txt"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#f10f0a"
         android:textSize="18sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/like_btn"
         app:layout_constraintStart_toEndOf="@id/like_btn"
         app:layout_constraintTop_toBottomOf="@id/post_txt"
@@ -81,7 +81,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_mode_comment_24_808080"
-        android:textAlignment="textEnd"
         app:layout_constraintEnd_toStartOf="@id/share_btn"
         app:layout_constraintTop_toBottomOf="@id/post_txt" />
 
@@ -89,9 +88,8 @@
         android:id="@+id/comments_counts_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#f10f0a"
         android:textSize="18sp"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/comment_btn"
         app:layout_constraintStart_toEndOf="@id/comment_btn"
         app:layout_constraintTop_toBottomOf="@id/post_txt"
@@ -103,7 +101,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_share_24_808080"
-        android:textAlignment="textEnd"
         app:layout_constraintEnd_toStartOf="@id/comments_counts_txt"
         app:layout_constraintTop_toBottomOf="@id/post_txt" />
 
@@ -111,12 +108,21 @@
         android:id="@+id/share_counts_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#f10f0a"
         android:textSize="18sp"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/share_btn"
         app:layout_constraintStart_toEndOf="@id/share_btn"
         app:layout_constraintTop_toBottomOf="@id/post_txt"
         tools:text="0" />
+
+    <ImageButton
+        android:id="@+id/location_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_location_on_24_808080"
+        app:layout_constraintStart_toEndOf="@id/share_counts_txt"
+        app:layout_constraintTop_toBottomOf="@id/post_txt"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

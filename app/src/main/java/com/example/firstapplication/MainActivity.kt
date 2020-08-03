@@ -14,6 +14,44 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         JodaTimeAndroid.init(this)
         initViews()
+
+        like_btn.setOnClickListener {
+            post.liked = !post.liked
+
+            if (post.liked) {
+                like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
+                like_counts_txt.text = "1"
+                like_counts_txt.visibility = View.VISIBLE
+            } else {
+                like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_808080)
+                like_counts_txt.text = "0"
+                like_counts_txt.visibility = View.INVISIBLE
+            }
+        }
+
+        comment_btn.setOnClickListener {
+            post.commented = !post.commented
+
+            if (post.commented) {
+                comments_counts_txt.text = "1"
+                comments_counts_txt.visibility = View.VISIBLE
+            } else {
+                comments_counts_txt.text = "0"
+                comments_counts_txt.visibility = View.INVISIBLE
+            }
+        }
+
+        share_btn.setOnClickListener {
+            post.shared = !post.shared
+
+            if (post.shared) {
+                share_counts_txt.text = "1"
+                share_counts_txt.visibility = View.VISIBLE
+            } else {
+                share_counts_txt.text = "0"
+                share_counts_txt.visibility = View.INVISIBLE
+            }
+        }
     }
 
     private val post = PostCard("Username", LocalDate(), "first post in our network", true)
