@@ -67,6 +67,13 @@ class MainActivity : AppCompatActivity() {
             mapIntent.setPackage("com.google.android.apps.maps")
             startActivity(mapIntent)
         }
+
+        youtube_btn.setOnClickListener {
+            val intentUri = Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY")
+            val youtubeIntent = Intent(Intent.ACTION_VIEW, intentUri)
+            youtubeIntent.setPackage("com.google.android.youtube")
+            startActivity(youtubeIntent)
+        }
     }
 
 
