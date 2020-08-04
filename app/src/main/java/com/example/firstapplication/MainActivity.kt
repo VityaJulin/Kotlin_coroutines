@@ -56,15 +56,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         location_btn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                if (post.coordinate != null) {
-                    post.coordinate!!
-                } else
-                    Uri.parse(post.address)
-            }
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(intent)
-            }
+            val intentUri = Uri.parse(
+                if (post.coordinate != "") {
+                    "geo:${post.coordinate}"
+                } else {
+                    "geo:0,0?q=${post.address}"
+                }
+            )
+            val mapIntent = Intent(Intent.ACTION_VIEW, intentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
         }
     }
 

@@ -1,6 +1,5 @@
 package com.example.firstapplication
 
-import android.net.Uri
 import org.joda.time.LocalDate
 
 class PostCard(
@@ -11,7 +10,7 @@ class PostCard(
     var commented: Boolean = false,
     var shared: Boolean = false,
     var address: String = "Moscow Russia",
-    var coordinate: Uri? = null
+    var coordinate: String = ""
 ) {
 
 }
