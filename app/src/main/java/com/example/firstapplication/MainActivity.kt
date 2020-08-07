@@ -22,12 +22,16 @@ class MainActivity : AppCompatActivity() {
 
             if (post.liked) {
                 like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
-                like_counts_txt.text = "1"
+                post.likeCounts += 1
+                like_counts_txt.text = post.likeCounts.toString()
                 like_counts_txt.visibility = View.VISIBLE
             } else {
                 like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_808080)
-                like_counts_txt.text = "0"
-                like_counts_txt.visibility = View.INVISIBLE
+                post.likeCounts -= 1
+                like_counts_txt.text = post.likeCounts.toString()
+                if (post.likeCounts <= 0) {
+                    like_counts_txt.visibility = View.INVISIBLE
+                }
             }
         }
 
@@ -35,11 +39,15 @@ class MainActivity : AppCompatActivity() {
             post.commented = !post.commented
 
             if (post.commented) {
-                comments_counts_txt.text = "1"
+                post.commentCounts += 1
+                comments_counts_txt.text = post.commentCounts.toString()
                 comments_counts_txt.visibility = View.VISIBLE
             } else {
-                comments_counts_txt.text = "0"
-                comments_counts_txt.visibility = View.INVISIBLE
+                post.commentCounts -= 1
+                comments_counts_txt.text = post.commentCounts.toString()
+                if (post.commentCounts <= 0) {
+                    comments_counts_txt.visibility = View.INVISIBLE
+                }
             }
         }
 
@@ -47,11 +55,15 @@ class MainActivity : AppCompatActivity() {
             post.shared = !post.shared
 
             if (post.shared) {
-                share_counts_txt.text = "1"
+                post.shareCounts += 1
+                share_counts_txt.text = post.shareCounts.toString()
                 share_counts_txt.visibility = View.VISIBLE
             } else {
-                share_counts_txt.text = "0"
-                share_counts_txt.visibility = View.INVISIBLE
+                post.shareCounts -= 1
+                share_counts_txt.text = post.shareCounts.toString()
+                if (post.shareCounts <= 0) {
+                    share_counts_txt.visibility = View.INVISIBLE
+                }
             }
         }
 
