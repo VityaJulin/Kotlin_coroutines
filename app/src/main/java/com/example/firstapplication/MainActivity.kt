@@ -63,16 +63,18 @@ class MainActivity : AppCompatActivity() {
                     "geo:0,0?q=${post.address}"
                 }
             )
-            val mapIntent = Intent(Intent.ACTION_VIEW, intentUri)
-            mapIntent.setPackage("com.google.android.apps.maps")
-            startActivity(mapIntent)
+            val mapIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
+                setPackage("com.google.android.apps.maps")
+                startActivity(this)
+            }
         }
 
         youtube_btn.setOnClickListener {
             val intentUri = Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY")
-            val youtubeIntent = Intent(Intent.ACTION_VIEW, intentUri)
-            youtubeIntent.setPackage("com.google.android.youtube")
-            startActivity(youtubeIntent)
+            val youtubeIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
+                setPackage("com.google.android.youtube")
+                startActivity(this)
+            }
         }
     }
 
