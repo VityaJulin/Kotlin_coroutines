@@ -12,8 +12,7 @@ class PostCard(
     var likeCounts: Int = 0,
     var commentCounts: Int = 0,
     var shareCounts: Int = 0,
-    var address: String = "Moscow Russia",
-    var coordinate: String = ""
+    var location: GeoLocation = GeoLocation()
 ) {
 
 }

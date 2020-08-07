@@ -69,10 +69,10 @@ class MainActivity : AppCompatActivity() {
 
         location_btn.setOnClickListener {
             val intentUri = Uri.parse(
-                if (post.coordinate != "") {
-                    "geo:${post.coordinate}"
+                if (post.location.coordinate != "") {
+                    "geo:${post.location.coordinate}"
                 } else {
-                    "geo:0,0?q=${post.address}"
+                    "geo:0,0?q=${post.location.address}"
                 }
             )
             val mapIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
