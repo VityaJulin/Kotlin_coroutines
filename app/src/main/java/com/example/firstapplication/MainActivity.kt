@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.post_card_view.*
 import net.danlew.android.joda.JodaTimeAndroid
@@ -68,16 +69,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         location_btn.setOnClickListener {
-            val intentUri = Uri.parse(
-                if (post.location.coordinate != "") {
-                    "geo:${post.location.coordinate}"
-                } else {
-                    "geo:0,0?q=${post.location.address}"
+            if (post.postType == Event.POST_A_EVENT) {
+                val intentUri = Uri.parse(
+                    if (post.postType.geoLocation!!.coordinate != "") {
+                        "geo:${post.postType.geoLocation!!.coordinate}"
+                    } else {
+                        "geo:0,0?q=${post.postType.geoLocation!!.address}"
+                    }
+                )
+                val mapIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
+                    setPackage("com.google.android.apps.maps")
+                    startActivity(this)
                 }
-            )
-            val mapIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
-                setPackage("com.google.android.apps.maps")
-                startActivity(this)
+            } else {
+                Toast.makeText(this, "Post is not event", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -90,8 +95,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private val post = PostCard("Username", LocalDate(), "first post in our network", true)
+    private val post = PostCard(
+        "Username",
+        LocalDate(),
+        "first post in our network",
+        true,
+        postType = Event.POST_A_EVENT
+    )
 
     private fun initViews() {
         username_txt.text = post.username

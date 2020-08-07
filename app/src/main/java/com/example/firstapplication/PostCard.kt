@@ -12,7 +12,7 @@ class PostCard(
     var likeCounts: Int = 0,
     var commentCounts: Int = 0,
     var shareCounts: Int = 0,
-    var location: GeoLocation = GeoLocation()
+    val postType: Event = Event.POST_NOT_A_EVENT
 ) {
 
 }
