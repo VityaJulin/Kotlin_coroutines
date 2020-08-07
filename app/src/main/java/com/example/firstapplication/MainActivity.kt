@@ -99,7 +99,6 @@ class MainActivity : AppCompatActivity() {
         "Username",
         LocalDate(),
         "first post in our network",
-        true,
         postType = Event.POST_A_EVENT
     )
 
@@ -110,17 +109,17 @@ class MainActivity : AppCompatActivity() {
 
         if (post.liked) {
             like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
-            like_counts_txt.text = "1"
+            like_counts_txt.text = post.likeCounts.toString()
             like_counts_txt.visibility = View.VISIBLE
         }
 
         if (post.commented) {
-            comments_counts_txt.text = "1"
+            comments_counts_txt.text = post.commentCounts.toString()
             comments_counts_txt.visibility = View.VISIBLE
         }
 
         if (post.shared) {
-            share_counts_txt.text = "1"
+            share_counts_txt.text = post.shareCounts.toString()
             share_counts_txt.visibility = View.VISIBLE
         }
     }
