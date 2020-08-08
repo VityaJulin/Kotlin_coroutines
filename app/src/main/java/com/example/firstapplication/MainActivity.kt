@@ -69,12 +69,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         location_btn.setOnClickListener {
-            if (post.postType == Event.POST_A_EVENT) {
+            if (post.postType == PostType.EVENT) {
+                val geoLocation = GeoLocation()
                 val intentUri = Uri.parse(
-                    if (post.postType.geoLocation!!.coordinate != "") {
-                        "geo:${post.postType.geoLocation!!.coordinate}"
+                    if (geoLocation.coordinate != "") {
+                        "geo:${geoLocation.coordinate}"
                     } else {
-                        "geo:0,0?q=${post.postType.geoLocation!!.address}"
+                        "geo:0,0?q=${geoLocation.address}"
                     }
                 )
                 val mapIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
@@ -87,10 +88,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         youtube_btn.setOnClickListener {
-            val intentUri = Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY")
-            val youtubeIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
-                setPackage("com.google.android.youtube")
-                startActivity(this)
+            if (post.postType == PostType.YOUTUBE_VIDEO) {
+                val intentUri = Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY")
+                val youtubeIntent = Intent(Intent.ACTION_VIEW, intentUri).apply {
+                    setPackage("com.google.android.youtube")
+                    startActivity(this)
+                }
             }
         }
     }
@@ -99,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         "Username",
         LocalDate(),
         "first post in our network",
-        postType = Event.POST_A_EVENT
+        postType = PostType.EVENT
     )
 
     private fun initViews() {
