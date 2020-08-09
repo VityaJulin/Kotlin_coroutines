@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.post_card_view.view.*
 import org.joda.time.LocalDate
 import org.joda.time.Period
 
-class Adapter(val list: List<PostCard>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class Adapter(val list: MutableList<PostCard>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.post_card_view, parent, false)
@@ -31,6 +31,15 @@ class Adapter(val list: List<PostCard>) : RecyclerView.Adapter<RecyclerView.View
 class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.ViewHolder(view) {
     init {
         with(itemView) {
+            post_visible.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    val item = adapter.list[adapterPosition]
+
+                    adapter.list.removeAt(adapterPosition)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
             like_btn.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[adapterPosition]

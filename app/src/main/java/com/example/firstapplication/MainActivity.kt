@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val list = listOf(
+    private val list = mutableListOf(
         PostCard(
             "Username1",
             LocalDate(),

@@ -39,6 +39,15 @@
         app:layout_constraintTop_toBottomOf="@id/date_txt"
         tools:text="Username" />
 
+    <ImageButton
+        android:id="@+id/post_visible"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_visibility_off_24_808080"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/avatar_img" />
+
     <TextView
         android:id="@+id/post_txt"
         android:layout_width="match_parent"
