@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.post_card_view.view.*
 import org.joda.time.LocalDate
 import org.joda.time.Period
@@ -33,8 +34,8 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
             like_btn.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[adapterPosition]
-                    item.liked = !item.liked
 
+                    item.liked = !item.liked
                     if (item.liked) {
                         like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
                         item.likeCounts += 1
@@ -48,15 +49,15 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
                             like_counts_txt.visibility = View.INVISIBLE
                         }
                     }
-                    adapter.notifyItemChanged(adapterPosition)
+                    adapter.notifyDataSetChanged()
                 }
             }
 
             comment_btn.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[adapterPosition]
-                    item.commented = !item.commented
 
+                    item.commented = !item.commented
                     if (item.commented) {
                         item.commentCounts += 1
                         comments_counts_txt.text = item.commentCounts.toString()
@@ -68,15 +69,15 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
                             comments_counts_txt.visibility = View.INVISIBLE
                         }
                     }
-                    adapter.notifyItemChanged(adapterPosition)
+                    adapter.notifyDataSetChanged()
                 }
             }
 
             share_btn.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[adapterPosition]
-                    item.shared = !item.shared
 
+                    item.shared = !item.shared
                     if (item.shared) {
                         item.shareCounts += 1
                         share_counts_txt.text = item.shareCounts.toString()
@@ -88,7 +89,7 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
                             share_counts_txt.visibility = View.INVISIBLE
                         }
                     }
-                    adapter.notifyItemChanged(adapterPosition)
+                    adapter.notifyDataSetChanged()
                 }
             }
 
