@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.post_card_view.view.*
+import kotlinx.coroutines.Job
 import org.joda.time.LocalDate
 import org.joda.time.Period
 
-class Adapter(val list: MutableList<PostCard>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class Adapter(val list: Job) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.post_card_view, parent, false)
