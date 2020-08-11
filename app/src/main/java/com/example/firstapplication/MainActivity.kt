@@ -1,15 +1,12 @@
 package com.example.firstapplication
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.ktor.client.request.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import net.danlew.android.joda.JodaTimeAndroid
-import org.joda.time.LocalDate
-import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
