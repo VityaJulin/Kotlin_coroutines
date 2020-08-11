@@ -8,31 +8,26 @@ import io.ktor.client.request.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import net.danlew.android.joda.JodaTimeAndroid
+import org.joda.time.LocalDate
 import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity(), CoroutineScope {
-    private val job = SupervisorJob()
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job
-
+class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         JodaTimeAndroid.init(this)
 
-        val list = fetchData()
+        fetchData()
+    }
 
+    private fun fetchData(): Job = launch {
+        val list = withContext(Dispatchers.IO) {
+            Api.client.get<MutableList<PostCard>>(Api.url)
+        }
         with(recycle_main) {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = Adapter(list)
         }
-    }
-
-    private fun fetchData() = launch {
-        val list = withContext(Dispatchers.IO) {
-            Api.client.get<MutableList<PostCard>>(Api.url)
-        }
-        Toast.makeText(this@MainActivity, "Length: ${list.size}", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {
