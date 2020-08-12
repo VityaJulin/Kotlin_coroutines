@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.post_card_view.view.*
-import kotlinx.coroutines.Job
-import org.joda.time.LocalDate
-import org.joda.time.Period
 
 class Adapter(val list: MutableList<PostCard>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -162,6 +159,9 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
             if (post.shared) {
                 share_counts_txt.text = post.shareCounts.toString()
                 share_counts_txt.visibility = View.VISIBLE
+            }
+            if (post.postType == PostType.YOUTUBE_VIDEO) {
+                youtube_btn.visibility = View.VISIBLE
             }
         }
     }
