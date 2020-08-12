@@ -1,19 +1,16 @@
 [
   {
     "username": "Username1",
-    "date": "LocalDate()",
     "post": "first post in our network",
     "postType": "PostType.EVENT"
   },
   {
     "username": "Username2",
-    "date": "LocalDate()",
     "post": "second post in our network",
     "postType": "PostType.YOUTUBE_VIDEO"
   },
   {
     "username": "Username3",
-    "date": "LocalDate()",
     "post": "third post in our network",
     "postType": "PostType.REPOST"
   }

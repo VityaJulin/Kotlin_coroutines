@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.post_card_view.view.*
+import org.joda.time.LocalDate
+import org.joda.time.Period
 
 class Adapter(val list: MutableList<PostCard>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -143,7 +145,7 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
         with(itemView) {
             username_txt.text = post.username
             post_txt.text = post.post
-            //date_txt.text = getTimePeriod(post)
+            date_txt.text = getTimePeriod(post)
 
             if (post.liked) {
                 like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
@@ -166,11 +168,11 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
         }
     }
 
-    /*private fun getTimePeriod(post: PostCard): String {
+    private fun getTimePeriod(post: PostCard): String {
         val currentDate = LocalDate()
         val postDate = post.date
         val period = Period(postDate, currentDate)
 
         return "hour " + period.hours + " minutes " + period.minutes + " ago"
-    }*/
+    }
 }
