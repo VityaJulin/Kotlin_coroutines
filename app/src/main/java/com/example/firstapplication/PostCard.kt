@@ -4,7 +4,7 @@ import org.joda.time.LocalDate
 
 class PostCard(
     val username: String,
-    val date: LocalDate = LocalDate(),
+    val date: String = "22-10-2010",
     val post: String,
     var liked: Boolean = false,
     var commented: Boolean = false,

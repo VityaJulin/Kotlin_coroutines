@@ -28,8 +28,36 @@ class Adapter(val list: MutableList<PostCard>) : RecyclerView.Adapter<RecyclerVi
 }
 
 class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.ViewHolder(view) {
-    init {
+
+    fun bind(post: PostCard) {
         with(itemView) {
+            username_txt.text = post.username
+            post_txt.text = post.post
+            date_txt.text = getTimePeriod(post)
+
+            if (post.liked) {
+                like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
+                like_counts_txt.text = post.likeCounts.toString()
+                like_counts_txt.visibility = View.VISIBLE
+            }
+
+            if (post.commented) {
+                comments_counts_txt.text = post.commentCounts.toString()
+                comments_counts_txt.visibility = View.VISIBLE
+            }
+
+            if (post.shared) {
+                share_counts_txt.text = post.shareCounts.toString()
+                share_counts_txt.visibility = View.VISIBLE
+            }
+            if (post.postType == PostType.YOUTUBE_VIDEO) {
+                youtube_btn.visibility = View.VISIBLE
+            }
+
+            if (post.postType == PostType.EVENT) {
+                location_btn.visibility = View.VISIBLE
+            }
+
             post_visible.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[adapterPosition]
@@ -141,36 +169,9 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
         }
     }
 
-    fun bind(post: PostCard) {
-        with(itemView) {
-            username_txt.text = post.username
-            post_txt.text = post.post
-            date_txt.text = getTimePeriod(post)
-
-            if (post.liked) {
-                like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
-                like_counts_txt.text = post.likeCounts.toString()
-                like_counts_txt.visibility = View.VISIBLE
-            }
-
-            if (post.commented) {
-                comments_counts_txt.text = post.commentCounts.toString()
-                comments_counts_txt.visibility = View.VISIBLE
-            }
-
-            if (post.shared) {
-                share_counts_txt.text = post.shareCounts.toString()
-                share_counts_txt.visibility = View.VISIBLE
-            }
-            if (post.postType == PostType.YOUTUBE_VIDEO) {
-                youtube_btn.visibility = View.VISIBLE
-            }
-        }
-    }
-
     private fun getTimePeriod(post: PostCard): String {
         val currentDate = LocalDate()
-        val postDate = post.date
+        val postDate = LocalDate()
         val period = Period(postDate, currentDate)
 
         return "hour " + period.hours + " minutes " + period.minutes + " ago"
