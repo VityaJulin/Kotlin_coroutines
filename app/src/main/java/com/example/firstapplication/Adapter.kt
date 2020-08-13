@@ -39,23 +39,34 @@ class PostViewHolder(private val adapter: Adapter, view: View) : RecyclerView.Vi
                 like_btn.setImageResource(R.drawable.ic_baseline_favorite_24_f10f0a)
                 like_counts_txt.text = post.likeCounts.toString()
                 like_counts_txt.visibility = View.VISIBLE
+            } else {
+                like_counts_txt.visibility = View.GONE
             }
 
             if (post.commented) {
                 comments_counts_txt.text = post.commentCounts.toString()
                 comments_counts_txt.visibility = View.VISIBLE
+            } else {
+                comments_counts_txt.visibility = View.GONE
             }
 
             if (post.shared) {
                 share_counts_txt.text = post.shareCounts.toString()
                 share_counts_txt.visibility = View.VISIBLE
+            } else {
+                share_counts_txt.visibility = View.GONE
             }
+
             if (post.postType == PostType.YOUTUBE_VIDEO) {
                 youtube_btn.visibility = View.VISIBLE
+            } else {
+                youtube_btn.visibility = View.GONE
             }
 
             if (post.postType == PostType.EVENT) {
                 location_btn.visibility = View.VISIBLE
+            } else {
+                location_btn.visibility = View.GONE
             }
 
             post_visible.setOnClickListener {
