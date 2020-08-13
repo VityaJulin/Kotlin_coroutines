@@ -33,5 +33,16 @@
     "shareCounts": 0,
     "shared": false,
     "username": "Username3"
+  },
+  {
+    "commentCounts": 0,
+    "commented": false,
+    "date": "22-10-2010",
+    "likeCounts": 0,
+    "liked": false,
+    "post": "Fourth post in our network",
+    "shareCounts": 0,
+    "shared": false,
+    "username": "Username4"
   }
 ]
