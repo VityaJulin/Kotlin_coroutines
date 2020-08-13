@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     private fun fetchData(): Job = launch {
         val list = withContext(Dispatchers.IO) {
             Api.client.get<MutableList<PostCard>>(Api.url)
+            Api.client.get<MutableList<PostCard>>(Api.urlAdv)
         }
         with(recycle_main) {
             layoutManager = LinearLayoutManager(this@MainActivity)

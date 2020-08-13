@@ -6,7 +6,10 @@ import io.ktor.client.features.json.JsonFeature
 import io.ktor.http.ContentType
 
 object Api {
-    const val url = "https://raw.githubusercontent.com/VityaJulin/Kotlin_collections/master/app/src/main/java/com/example/firstapplication/posts.json"
+    const val url =
+        "https://raw.githubusercontent.com/VityaJulin/Kotlin_collections/master/app/src/main/java/com/example/firstapplication/posts.json"
+    const val urlAdv =
+        "https://raw.githubusercontent.com/VityaJulin/Kotlin_coroutines/master/app/src/main/java/com/example/firstapplication/advertising.json"
 
     val client = HttpClient {
         install(JsonFeature) {
