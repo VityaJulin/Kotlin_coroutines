@@ -3,16 +3,21 @@ package com.example.firstapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import io.ktor.client.request.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import net.danlew.android.joda.JodaTimeAndroid
+import java.io.File
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         JodaTimeAndroid.init(this)
+
+        val gson = Gson()
+        var jsonString:String = gson.toJson(posts)
 
         fetchData()
     }
@@ -31,4 +36,19 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         super.onDestroy()
         cancel()
     }
+
+    var posts = mutableListOf<PostCard>(
+        PostCard(
+            username = "Username1",
+            post = "First post in our network",
+            postType = PostType.EVENT
+        ),
+        PostCard(
+            username = "Username2",
+            post = "Second post in our network",
+            postType = PostType.YOUTUBE_VIDEO
+        ),
+        PostCard(username = "Username3", post = "Third post in our network")
+    )
+
 }

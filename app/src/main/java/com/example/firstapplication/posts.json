@@ -1,17 +1,37 @@
 [
   {
-    "username": "Username1",
-    "post": "first post in our network",
-    "postType": "PostType.EVENT"
+    "commentCounts": 0,
+    "commented": false,
+    "date": "22-10-2010",
+    "likeCounts": 0,
+    "liked": false,
+    "post": "First post in our network",
+    "postType": "EVENT",
+    "shareCounts": 0,
+    "shared": false,
+    "username": "Username1"
   },
   {
-    "username": "Username2",
-    "post": "second post in our network",
-    "postType": "PostType.YOUTUBE_VIDEO"
+    "commentCounts": 0,
+    "commented": false,
+    "date": "22-10-2010",
+    "likeCounts": 0,
+    "liked": false,
+    "post": "Second post in our network",
+    "postType": "YOUTUBE_VIDEO",
+    "shareCounts": 0,
+    "shared": false,
+    "username": "Username2"
   },
   {
-    "username": "Username3",
-    "post": "third post in our network",
-    "postType": "PostType.REPOST"
+    "commentCounts": 0,
+    "commented": false,
+    "date": "22-10-2010",
+    "likeCounts": 0,
+    "liked": false,
+    "post": "Third post in our network",
+    "shareCounts": 0,
+    "shared": false,
+    "username": "Username3"
   }
 ]
