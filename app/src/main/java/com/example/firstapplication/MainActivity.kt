@@ -8,7 +8,6 @@ import io.ktor.client.request.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import net.danlew.android.joda.JodaTimeAndroid
-import java.io.File
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         JodaTimeAndroid.init(this)
 
         val gson = Gson()
-        var jsonString:String = gson.toJson(posts)
+        var jsonString: String = gson.toJson(posts)
 
         fetchData()
     }
