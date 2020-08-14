@@ -15,17 +15,21 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         setContentView(R.layout.activity_main)
         JodaTimeAndroid.init(this)
 
-        val gson = Gson()
-        var jsonString: String = gson.toJson(posts)
-
         fetchData()
     }
 
     private fun fetchData(): Job = launch {
         val list = withContext(Dispatchers.IO) {
             Api.client.get<MutableList<PostCard>>(Api.url)
+        }
+
+        val listAdv = withContext(Dispatchers.IO) {
             Api.client.get<MutableList<PostCard>>(Api.urlAdv)
         }
+
+        list.addAll(listAdv)
+        list.shuffle()
+
         with(recycle_main) {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = Adapter(list)
@@ -36,19 +40,4 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         super.onDestroy()
         cancel()
     }
-
-    var posts = mutableListOf<PostCard>(
-        PostCard(
-            username = "Username1",
-            post = "First post in our network",
-            postType = PostType.EVENT
-        ),
-        PostCard(
-            username = "Username2",
-            post = "Second post in our network",
-            postType = PostType.YOUTUBE_VIDEO
-        ),
-        PostCard(username = "Username3", post = "Third post in our network")
-    )
-
 }
