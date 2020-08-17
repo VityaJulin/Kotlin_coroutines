@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
             Api.client.get<MutableList<PostCard>>(Api.urlAdv)
         }
 
-        /*list.addAll(listAdv)
-        list.shuffle()
-*/
         var listPostAndAdv = mixLists(list, listAdv)
 
         with(recycle_main) {
@@ -50,7 +47,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         val oneSize = one.size
         val twoSize = two.size
         val intervalSize = 3
-        var listsArr = one.subList(0, min(oneSize, intervalSize))
+        var listsArr = one.subList(0, min(oneSize, intervalSize)).toMutableList()
         var j = 0
 
         for (i in intervalSize..oneSize step intervalSize) {
