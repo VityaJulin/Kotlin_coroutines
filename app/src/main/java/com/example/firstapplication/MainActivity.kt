@@ -7,6 +7,7 @@ import io.ktor.client.request.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import net.danlew.android.joda.JodaTimeAndroid
+import kotlin.math.min
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,17 +27,38 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
             Api.client.get<MutableList<PostCard>>(Api.urlAdv)
         }
 
-        list.addAll(listAdv)
+        /*list.addAll(listAdv)
         list.shuffle()
+*/
+        var listPostAndAdv = mixLists(list, listAdv)
 
         with(recycle_main) {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = Adapter(list)
+            adapter = Adapter(listPostAndAdv)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         cancel()
+    }
+
+    private fun mixLists(
+        one: MutableList<PostCard>,
+        two: MutableList<PostCard>
+    ): MutableList<PostCard> {
+        val oneSize = one.size
+        val twoSize = two.size
+        val intervalSize = 3
+        var listsArr = one.subList(0, min(oneSize, intervalSize))
+        var j = 0
+
+        for (i in intervalSize..oneSize step intervalSize) {
+            listsArr.addAll(two.subList(j, min(twoSize, j + 1)))
+            j += 1
+            listsArr.addAll(one.subList(i, min(oneSize, i + intervalSize)))
+        }
+
+        return listsArr
     }
 }
