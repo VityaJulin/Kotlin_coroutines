@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         JodaTimeAndroid.init(this)
 
         fetchData()
-        if (fetchData().isCompleted) {
-            progress_bar.visibility = View.GONE
-        }
     }
 
     private fun fetchData(): Job = launch {
@@ -35,6 +32,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         with(recycle_main) {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = Adapter(listPostAndAdv)
+        }
+        if (fetchData().isCompleted) {
+            progress_bar.visibility = View.GONE
         }
     }
 
