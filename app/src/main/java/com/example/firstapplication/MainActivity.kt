@@ -1,6 +1,7 @@
 package com.example.firstapplication
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.ktor.client.request.get
@@ -15,6 +16,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         JodaTimeAndroid.init(this)
 
         fetchData()
+        if (fetchData().isCompleted) {
+            progress_bar.visibility = View.GONE
+        }
     }
 
     private fun fetchData(): Job = launch {
