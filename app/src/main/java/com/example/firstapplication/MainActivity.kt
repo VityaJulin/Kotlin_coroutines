@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         fetchData()
     }
 
-    private fun fetchData(): Job = launch {
+    fun fetchData(): Job = launch {
         val list = withContext(Dispatchers.IO) {
             Api.client.get<MutableList<PostCard>>(Api.url)
         }
