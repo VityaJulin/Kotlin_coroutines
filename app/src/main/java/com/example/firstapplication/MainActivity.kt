@@ -33,9 +33,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = Adapter(listPostAndAdv)
         }
-        if (fetchData().isCompleted) {
-            progress_bar.visibility = View.GONE
-        }
+        progress_bar.visibility = View.GONE
     }
 
     override fun onDestroy() {
