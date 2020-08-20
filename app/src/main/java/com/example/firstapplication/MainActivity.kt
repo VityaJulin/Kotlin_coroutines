@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.ktor.client.request.get
+import io.ktor.client.request.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import net.danlew.android.joda.JodaTimeAndroid
